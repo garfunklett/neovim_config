@@ -22,6 +22,7 @@ vim.opt.softtabstop = tabspaces
 vim.opt.shiftwidth = tabspaces
 
 -- about display
+vim.opt.background = "dark"
 vim.opt.showmatch = true
 vim.opt.visualbell = true
 vim.opt.laststatus = 3
