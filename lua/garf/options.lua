@@ -43,8 +43,7 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17"
-
--- vim.opt.t_Co=256 don't know whether needed anymore
+-- vim.opt.t_Co = 256
 
 -- about search
 vim.opt.wrapscan = false
