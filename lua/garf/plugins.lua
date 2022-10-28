@@ -46,7 +46,6 @@ return packer.startup(function(use)
     -- basic plugins
     use { "wbthomason/packer.nvim"}
     use { "nvim-lua/plenary.nvim"}
-    use { "windwp/nvim-autopairs"}
 
     -- color scheme
     use { "folke/tokyonight.nvim"}
@@ -71,6 +70,9 @@ return packer.startup(function(use)
     use { "williamboman/mason-lspconfig.nvim" }
     use { "jose-elias-alvarez/null-ls.nvim" }
     use { "RRethy/vim-illuminate" }
+
+    -- misc
+    use { "nvim-tree/nvim-tree.lua" }
 
     --[===[
     -- My plugins here

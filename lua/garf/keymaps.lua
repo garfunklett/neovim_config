@@ -50,11 +50,15 @@ keymap("v", "p", '"_dP', opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
---[===[
+-------------
 -- Plugins --
+-------------
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<F11>", ":NvimTreeToggle<CR>", opts)
+
+--[===[
+-- Plugins --
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
