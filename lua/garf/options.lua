@@ -39,8 +39,8 @@ vim.opt.ruler = false
 vim.opt.numberwidth = 4
 vim.opt.signcolumn = "yes"
 vim.opt.fillchars.eob="~"
-vim.opt.wrap = false
--- don't want vim.opt.linebreak = true
+vim.opt.wrap = true
+vim.opt.linebreak = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17"
@@ -58,11 +58,12 @@ vim.opt.mouse = "a"
 vim.opt.mousehide = true
 
 -- misc
-vim.opt.completeopt = { "menu", "menuone", "noselect", "longest", "preview" }
+-- vim.opt.completeopt = { "menu", "menuone", "noselect", "longest", "preview" }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 vim.opt.conceallevel = 0
-vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
+-- don't want vim.opt.whichwrap:append("<,>,[,],h,l")
 -- question vim.opt.clipboard = "unnamedplus"
 
 -- split

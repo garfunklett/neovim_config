@@ -54,15 +54,23 @@ return packer.startup(function(use)
 
     -- cmp plugins
     use { "hrsh7th/nvim-cmp"}
-    use { "hrsh7th/cmp-buffer"}
-    use { "hrsh7th/cmp-path"}
-    use { "saadparwaiz1/cmp_luasnip"}
     use { "hrsh7th/cmp-nvim-lsp"}
     use { "hrsh7th/cmp-nvim-lua"}
+    use { "saadparwaiz1/cmp_luasnip"}
+    use { "hrsh7th/cmp-buffer"}
+    use { "hrsh7th/cmp-path"}
+    use { "hrsh7th/cmp-cmdline"}
 
     -- snippets
     use { "L3MON4D3/LuaSnip"}
     use { "rafamadriz/friendly-snippets"}
+
+    -- LSP
+    use { "neovim/nvim-lspconfig" }
+    use { "williamboman/mason.nvim" }
+    use { "williamboman/mason-lspconfig.nvim" }
+    use { "jose-elias-alvarez/null-ls.nvim" }
+    use { "RRethy/vim-illuminate" }
 
     --[===[
     -- My plugins here
@@ -78,14 +86,6 @@ return packer.startup(function(use)
     use { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" }
     use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
     use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
-
-    -- LSP
-    -- use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
-    use { "neovim/nvim-lspconfig", commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda" } -- enable LSP
-    use { "williamboman/mason.nvim", commit = "c2002d7a6b5a72ba02388548cfaf420b864fbc12"}
-    use { "williamboman/mason-lspconfig.nvim", commit = "0051870dd728f4988110a1b2d47f4a4510213e31" }
-    use { "jose-elias-alvarez/null-ls.nvim", commit = "c0c19f32b614b3921e17886c541c13a72748d450" } -- for formatters and linters
-    use { "RRethy/vim-illuminate", commit = "a2e8476af3f3e993bb0d6477438aad3096512e42" }
 
     -- Telescope
     use { "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" }
