@@ -73,3 +73,8 @@ nvim_tree.setup {
         },
     },
 }
+
+-- keymap
+local opts = { silent = true }
+vim.keymap.set("n", "<F11>", ":NvimTreeToggle<CR>", opts)
+
