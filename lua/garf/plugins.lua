@@ -80,6 +80,9 @@ return packer.startup(function(use)
     -- explore
     use { "nvim-tree/nvim-tree.lua" }
 
+    -- Git
+    use { "lewis6991/gitsigns.nvim" }
+
     --[===[
     -- My plugins here
     use { "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" }
@@ -93,9 +96,6 @@ return packer.startup(function(use)
     use { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" }
     use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
     use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
-
-    -- Git
-    use { "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" }
 
     -- DAP
     use { "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" }
