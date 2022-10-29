@@ -46,6 +46,7 @@ return packer.startup(function(use)
     -- basic plugins
     use { "wbthomason/packer.nvim"}
     use { "nvim-lua/plenary.nvim"}
+    use { "nvim-tree/nvim-web-devicons" }
 
     -- color scheme
     use { "folke/tokyonight.nvim"}
@@ -93,7 +94,6 @@ return packer.startup(function(use)
     -- My plugins here
     use { "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" }
     use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "4d3a68c41a53add8804f471fcc49bb398fe8de08" }
-    use { "kyazdani42/nvim-web-devicons", commit = "563f3635c2d8a7be7933b9e547f7c178ba0d4352" }
     use { "akinsho/bufferline.nvim", commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4" }
     use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
     use { "ahmedkhalf/project.nvim", commit = "628de7e433dd503e782831fe150bb750e56e55d6" }
