@@ -90,6 +90,9 @@ return packer.startup(function(use)
     -- status line
     use { "nvim-lualine/lualine.nvim" }
 
+    -- indent visualization
+    use { "lukas-reineke/indent-blankline.nvim" }
+
     --[===[
     -- My plugins here
     use { "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" }
@@ -98,7 +101,6 @@ return packer.startup(function(use)
     use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
     use { "ahmedkhalf/project.nvim", commit = "628de7e433dd503e782831fe150bb750e56e55d6" }
     use { "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" }
-    use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
     use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31" }
 
     -- DAP
