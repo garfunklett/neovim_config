@@ -66,6 +66,17 @@ vim.keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 vim.keymap.set("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 vim.keymap.set("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
+local vs_status_ok, launchjs = pcall(require, "dap.ext.vscode")
+if not vs_status_ok then
+    vim.notify("no vscode extention installed.")
+else
+    local ljs_status_ok
+    ljs_status_ok, _ = pcall(launchjs.load_launchjs, nil, { cppdbg = { 'c', 'cpp' } })
+    if not ljs_status_ok then
+        vim.notify("no launch.js detected.")
+    end
+end
+
 -- dap ui
 local dap_ui_status_ok, dapui = pcall(require, "dapui")
 if not dap_ui_status_ok then

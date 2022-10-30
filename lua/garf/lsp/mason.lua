@@ -86,13 +86,10 @@ for _, server in pairs(servers) do
                 "clangd",
                 "--log=verbose",
                 "--pretty",
-                "-j4",
                 "--background-index",
                 "--compile-commands-dir=.",
                 "--pch-storage=memory",
                 "--clang-tidy",
-                "--suggest-missing-includes",
-                "--cross-file-rename",
                 "--completion-style=detailed",
             },
             init_options = {
