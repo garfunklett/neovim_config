@@ -78,10 +78,35 @@ if not lspconfig_status_ok then
 end
 local opts = {}
 for _, server in pairs(servers) do
-	opts = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
+    if server == "clangd" then
+        opts = {
+            capabilities = capabilities,
+            cmd = {
+                "clangd",
+                "--log=verbose",
+                "--pretty",
+                "-j4",
+                "--background-index",
+                "--compile-commands-dir=.",
+                "--pch-storage=memory",
+                "--clang-tidy",
+                "--suggest-missing-includes",
+                "--cross-file-rename",
+                "--completion-style=detailed",
+            },
+            init_options = {
+                clangdFileStatus = true,
+                usePlaceholders = true,
+                completeUnimported = true,
+                semanticHighlighting = true,
+            }
+        }
+    else
+        opts = {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+    end
 
 	server = vim.split(server, "@")[1]
 
