@@ -50,6 +50,8 @@ dap.configurations.cpp = {
     },
 }
 
+dap.configurations.c = dap.configurations.cpp
+
 -- local dap_ui_status_ok, dapui = pcall(require, "dapui")
 -- if not dap_ui_status_ok then
 --     return
