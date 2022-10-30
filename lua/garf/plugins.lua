@@ -72,6 +72,9 @@ return packer.startup(function(use)
     use { "jose-elias-alvarez/null-ls.nvim" }
     use { "RRethy/vim-illuminate" }
 
+    -- DAP
+    use { "mfussenegger/nvim-dap" }
+
     -- Telescope
     use { "nvim-telescope/telescope.nvim" }
 
