@@ -80,6 +80,7 @@ local opts = {}
 for _, server in pairs(servers) do
     if server == "clangd" then
         opts = {
+            on_attach = on_attach,
             capabilities = capabilities,
             cmd = {
                 "clangd",
