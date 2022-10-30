@@ -21,6 +21,13 @@ dap.configurations.cpp = {
         stopAtEntry = true,
         args = {},
         runInTerminal = false,
+        setupCommands = {
+            {
+                text = '-enable-pretty-printing',
+                description =  'enable pretty printing',
+                ignoreFailures = false,
+            },
+        },
     },
     {
         name = 'Attach to gdbserver :1234',
@@ -33,6 +40,13 @@ dap.configurations.cpp = {
         program = function()
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
+        setupCommands = {
+            {
+                text = '-enable-pretty-printing',
+                description =  'enable pretty printing',
+                ignoreFailures = false,
+            },
+        },
     },
 }
 
