@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug the bin",
+            "type": "cppdbg",
+            "request": "launch",
+            "stopAtEntry": true,
+            "runInTerminal": false,
+            "setupCommands": [
+                {
+                    "description": "enable pretty printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ],
+            "cwd": "/a/location/",
+            "program": "/the/binary",
+            "args": []
+        }
+    ]
+}
