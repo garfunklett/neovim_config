@@ -6,7 +6,6 @@ end
 dap.adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
-    -- command = '/Users/garf/.local/share/nvim/mason/bin/OpenDebugAD7',
     command = 'OpenDebugAD7',
 }
 
@@ -56,26 +55,39 @@ dap.configurations.c = dap.configurations.cpp
 
 -- keymap
 local opts = { silent = true }
-vim.keymap.set("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
-vim.keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
-vim.keymap.set("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
-vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
-vim.keymap.set("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
-vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
-vim.keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-vim.keymap.set("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
-vim.keymap.set("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
-
-local vs_status_ok, launchjs = pcall(require, "dap.ext.vscode")
-if not vs_status_ok then
-    vim.notify("no vscode extention installed.")
-else
-    local ljs_status_ok
-    ljs_status_ok, _ = pcall(launchjs.load_launchjs, nil, { cppdbg = { 'c', 'cpp' } })
+local function continue_func()
+    local ext_vscode = require("dap.ext.vscode")
+    local ljs_status_ok, _ = pcall(ext_vscode.load_launchjs, nil, { cppdbg = { 'c', 'cpp' } })
     if not ljs_status_ok then
         vim.notify("no launch.js detected.")
     end
+    require("dap").continue()
 end
+vim.keymap.set("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+vim.keymap.set("n", "<leader>dB", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Condition: '))<cr>", opts)
+vim.keymap.set("n", "<leader>dc", "", { silent = true, callback = continue_func })
+vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.run_to_cursor()<cr>", opts)
+vim.keymap.set("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
+vim.keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
+vim.keymap.set("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
+vim.keymap.set("n", "<leader>du", "<cmd>lua require'dap'.up()<cr>", opts)
+vim.keymap.set("n", "<leader>dd", "<cmd>lua require'dap'.down()<cr>", opts)
+vim.keymap.set("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+vim.keymap.set("n", "<leader>dg", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+-- vim.keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
+-- vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
+
+-- this snippet is not needed anymore
+-- local vs_status_ok, ext_vscode = pcall(require, "dap.ext.vscode")
+-- if not vs_status_ok then
+--     vim.notify("no vscode extention installed.")
+-- else
+--     local ljs_status_ok
+--     ljs_status_ok, _ = pcall(ext_vscode.load_launchjs, nil, { cppdbg = { 'c', 'cpp' } })
+--     if not ljs_status_ok then
+--         vim.notify("no launch.js detected.")
+--     end
+-- end
 
 -- dap ui
 local dap_ui_status_ok, dapui = pcall(require, "dapui")
