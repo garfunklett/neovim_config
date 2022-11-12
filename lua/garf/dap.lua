@@ -74,6 +74,8 @@ vim.keymap.set("n", "<leader>du", "<cmd>lua require'dap'.up()<cr>", opts)
 vim.keymap.set("n", "<leader>dd", "<cmd>lua require'dap'.down()<cr>", opts)
 vim.keymap.set("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 vim.keymap.set("n", "<leader>dg", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+vim.keymap.set("n", "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", opts)
+vim.keymap.set("v", "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", opts)
 -- vim.keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 -- vim.keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 
