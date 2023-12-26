@@ -15,7 +15,7 @@ local config = {}
 if wezterm.config_builder then config = wezterm.config_builder() end
 
 -- Settings
-config.default_prog = { "ssh", "nothing" }
+-- config.default_prog = { "ssh", "nothing" }
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
@@ -41,6 +41,8 @@ config.keys = {
   { key = "a",          mods = "LEADER|CTRL", action = act.SendKey { key = "a", mods = "CTRL" } },
   { key = "c",          mods = "LEADER",      action = act.ActivateCopyMode },
   { key = "phys:Space", mods = "LEADER",      action = act.ActivateCommandPalette },
+
+  { key = "f",          mods = "LEADER",      action = act.ToggleFullScreen },
 
   -- Pane keybindings
   { key = "s",          mods = "LEADER",      action = act.SplitVertical { domain = "CurrentPaneDomain" } },
