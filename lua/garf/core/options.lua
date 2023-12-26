@@ -21,6 +21,37 @@ vim.opt.tabstop = tabspaces
 vim.opt.softtabstop = tabspaces
 vim.opt.shiftwidth = tabspaces
 
+--[=[
+let s:prevtabfocus=tabpagenr()
+let s:prevtabnum=tabpagenr('$')
+augroup TabClosedGroup
+    autocmd!
+    autocmd TabEnter * :if tabpagenr('$')<s:prevtabnum && s:prevtabfocus>1 && s:prevtabfocus<s:prevtabnum
+                \       |   tabprevious
+                \       |endif
+                \       |let s:prevtabfocus=tabpagenr()
+                \       |let s:prevtabnum=tabpagenr('$')
+augroup END
+--]=]
+
+local prevTabFocusNum = vim.api.nvim_tabpage_get_number(0)
+local prevTabTotalNum = #(vim.api.nvim_list_tabpages())
+local tabCloseToLeft = function ()
+    local currentTabTotalNum = #(vim.api.nvim_list_tabpages())
+    if currentTabTotalNum < prevTabTotalNum and prevTabFocusNum > 1 and prevTabFocusNum < prevTabTotalNum then
+        local currentTabFocusNum = vim.api.nvim_tabpage_get_number(0)
+        local targetTabFocusHandle = vim.api.nvim_list_tabpages()[currentTabFocusNum - 1]
+        vim.api.nvim_set_current_tabpage(targetTabFocusHandle)
+    end
+    prevTabFocusNum = vim.api.nvim_tabpage_get_number(0)
+    prevTabTotalNum = #(vim.api.nvim_list_tabpages())
+end
+local tabGroup = vim.api.nvim_create_augroup("tabGroup", { clear = true })
+vim.api.nvim_create_autocmd("TabEnter", {
+    callback = tabCloseToLeft,
+    group = tabGroup
+})
+
 -- about display
 vim.opt.background = "dark"
 vim.opt.showmatch = true
@@ -45,6 +76,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17"
 -- vim.opt.t_Co = 256
+vim.cmd [[au FileType qf setlocal norelativenumber]]
 
 -- about search
 vim.opt.wrapscan = false
@@ -62,11 +94,10 @@ vim.opt.mousehide = true
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 vim.opt.conceallevel = 0
-vim.opt.iskeyword:append("-")
+-- doesn't work well with c++ pointer arrow vim.opt.iskeyword:append("-")
 -- don't want vim.opt.whichwrap:append("<,>,[,],h,l")
 -- question vim.opt.clipboard = "unnamedplus"
 
 -- split
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-

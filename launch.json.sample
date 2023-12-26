@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug the bin",
+            "name": "debug model builder",
             "type": "cppdbg",
             "request": "launch",
             "stopAtEntry": true,
@@ -14,8 +14,8 @@
                     "ignoreFailures": false
                 }
             ],
-            "cwd": "/a/location/",
-            "program": "/the/binary",
+            "cwd": "/local/mnt/workspace/code/embedded_ai/artifacts/debug/tools/bin/",
+            "program": "/local/mnt/workspace/code/embedded_ai/artifacts/debug/tools/bin/eai_builder",
             "args": []
         }
     ]
