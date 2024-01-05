@@ -11,5 +11,12 @@ return {
     {
         "stevearc/dressing.nvim",
         opts = {},
-    }
+    },
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        },
+        lazy = false,
+    },
 }
