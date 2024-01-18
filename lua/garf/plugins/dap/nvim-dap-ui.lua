@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     dependencies = { "mfussenegger/nvim-dap" },
     keys = {
-        {"<leader>dg", [[<cmd>lua require("dapui").toggle()<cr>]]},
+        {"<leader>dg", [[<cmd>lua require("dapui").toggle( {reset = true} )<cr>]]},
         {"<leader>de", [[<cmd>lua require("dapui").eval()<cr>]]},
     },
 
