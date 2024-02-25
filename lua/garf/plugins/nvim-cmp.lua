@@ -14,9 +14,7 @@ return {
     },
     config = function()
         local cmp = require("cmp")
-
         local luasnip = require("luasnip")
-
         -- local lspkind = require("lspkind")
 
         -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
@@ -40,6 +38,20 @@ return {
                     ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                     ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                     ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
                 -- sources for autocompletion
                 sources = cmp.config.sources({
