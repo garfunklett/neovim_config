@@ -1,7 +1,10 @@
 return {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
-    dependencies = { "mfussenegger/nvim-dap" },
+    dependencies = {
+        "mfussenegger/nvim-dap",
+        "nvim-neotest/nvim-nio",
+    },
     keys = {
         {"<leader>dg", [[<cmd>lua require("dapui").toggle( {reset = true} )<cr>]]},
         {"<leader>de", [[<cmd>lua require("dapui").eval()<cr>]]},
