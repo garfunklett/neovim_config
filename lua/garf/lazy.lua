@@ -19,7 +19,6 @@ require("lazy").setup(
         { import = "garf.plugins.cvs" },
         { import = "garf.plugins.lsp" },
         { import = "garf.plugins.dap" },
-        { import = "garf.plugins.neorg" },
     },
     {
         defaults = {
