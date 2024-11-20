@@ -1,4 +1,4 @@
 return {
-    "Joakker/lua-json5",
-    build = "./install.sh"
+--    "Joakker/lua-json5",
+--    build = "./install.sh"
 }

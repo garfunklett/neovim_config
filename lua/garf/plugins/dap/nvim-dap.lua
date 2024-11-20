@@ -25,8 +25,12 @@ return {
             end
 
             local ext_vscode = require("dap.ext.vscode")
-            local json5 = require("json5")
-            ext_vscode.json_decode = json5.parse
+            -- old lua_json5 config
+            -- local json5 = require("json5")
+            -- ext_vscode.json_decode = json5.parse
+            -- new lua_json5 config, which might not work
+            -- local json_reader = require("json")
+            -- ext_vscode.json_decode = json_reader.decode
             local ljs_status_ok, _ = pcall(ext_vscode.load_launchjs, nil, {cppdbg = {'c', 'cpp'}})
             if not ljs_status_ok then
                 vim.notify("no launch.js detected.")
