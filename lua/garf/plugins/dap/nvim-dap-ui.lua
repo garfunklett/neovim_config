@@ -1,5 +1,8 @@
 return {
     "rcarriga/nvim-dap-ui",
+    -- The v4.0.0 tag still calls vim.tbl_flatten; use fixes from master.
+    version = false,
+    branch = "master",
     event = "VeryLazy",
     dependencies = {
         "mfussenegger/nvim-dap",

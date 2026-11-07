@@ -22,7 +22,7 @@ config.font = wezterm.font_with_fallback({
     { family = "Hack Nerd Font Mono",  scale = 1.0 },
     { family = "Inconsolata Nerd Font Mono",  scale = 1.0, weight = "Medium" },
 })
-config.window_background_opacity = 0.9
+-- config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 config.scrollback_lines = 3000

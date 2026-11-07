@@ -29,14 +29,13 @@ return {
             ensure_installed = {
                 "clangd",
                 "lua_ls",
-                "lua_ls",
                 "pyright",
                 "bashls",
                 "jsonls",
                 "yamlls",
             },
-            -- auto-install configured servers (with lspconfig)
-            automatic_installation = true, -- not the same as ensure_installed
+            -- Enable installed servers through vim.lsp.enable().
+            automatic_enable = true,
         })
 
         -- mason_tool_installer.setup({
