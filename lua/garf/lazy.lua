@@ -22,6 +22,7 @@ require("lazy").setup(
     },
     {
         defaults = {
+            -- Prefer the latest stable release tag for all plugins.
             version = "*",
         },
         install = {
