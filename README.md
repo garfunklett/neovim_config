@@ -16,6 +16,7 @@ A personal Neovim 0.12 configuration focused on C/C++, Python, and Lua developme
 - [Debugging](#debugging)
 - [Comments and Surrounding Characters](#comments-and-surrounding-characters)
 - [Tasks and Other Features](#tasks-and-other-features)
+- [Possible Future JSONC Support](#possible-future-jsonc-support)
 - [Plugin Maintenance and Troubleshooting](#plugin-maintenance-and-troubleshooting)
 - [Current Limitations and Notes](#current-limitations-and-notes)
 
@@ -383,6 +384,57 @@ These are default bindings from enabled plugins; this configuration does not red
 | N | `<leader>fyl` | Cellular Automaton: Game of Life (`game_of_life`) |
 
 Overseer's ability to discover build and test tasks depends on project files and task templates. No dedicated test runner is configured in this project.
+
+## Possible Future JSONC Support
+
+**Status: evaluated, not implemented.** The following is a possible future improvement, not part of the active configuration. No additional parser has been installed or integrated.
+
+### Current Behavior
+
+VS Code uses JSON with Comments (JSONC) for `tasks.json` and `launch.json`, including line comments, block comments, and support for trailing commas. These are syntax extensions, not a newer JSON version; the `"version": "2.0.0"` field in `tasks.json` identifies the task format. See [VS Code's JSONC documentation](https://code.visualstudio.com/docs/languages/json#_json-with-comments).
+
+- Overseer reads `.vscode/tasks.json` through its own `overseer.json.decode` function.
+- With the current default DAP integration, `overseer.setup()` also replaces DAP's default `vim.json.decode` decoder with the Overseer decoder and connects `preLaunchTask` / `postDebugTask` support.
+- Tests against the installed Overseer version confirmed support for `//` comments and trailing commas, but not `/* ... */` block comments or JSON5 single quotes and unquoted keys.
+- The previous `Joakker/lua-json5` integration was disabled in commit `d249fb9` on 2024-11-19 because Linux and macOS required different build processes. Both its plugin declaration and DAP decoder assignment remain commented out. The alternative `rxi/json.lua` declaration is also inactive.
+- JSONLS and Treesitter provide editing features; they do not determine which parser loads task and launch configurations.
+
+### Candidate: dkjson
+
+[dkjson](https://dkolf.de/dkjson-lua/) is a single-file, pure-Lua JSON library with no required dependencies or compilation step. Version 2.11 was evaluated in a temporary directory with Neovim and the installed Overseer/DAP versions.
+
+| Check | Result |
+| --- | --- |
+| `//` line comments | Passed |
+| `/* ... */` block comments | Passed |
+| Trailing commas in objects and arrays | Passed |
+| Literal `https://` and `/*literal*/` inside strings | Preserved correctly |
+| Overseer VS Code task discovery using a shared decoder | Passed |
+| DAP launch-configuration decoding using the same function | Passed |
+
+These checks establish compatibility with the tested configuration syntax, not complete JSONC conformance or strict validation of every malformed input. No tasks or debugging sessions were started during testing.
+
+### Proposed Integration
+
+The preferred approach is to vendor the official Lua file directly into this repository, preserving its license and recording its source and version. A Git submodule is unnecessary for this single-file dependency. Unlike lazy-managed plugins, the vendored file would need separate manual updates and verification.
+
+Proposed files, which do not currently exist:
+
+```text
+lua/garf/vendor/dkjson.lua   # Unmodified upstream library
+lua/garf/utils/json.lua     # Shared decoder adapter
+```
+
+If implemented later:
+
+1. Add the upstream source with its license and version information.
+2. Implement a shared decoder adapter with clear parse errors, compatible null and empty-container handling, and checks for unconsumed input.
+3. Connect the shared decoder to `overseer.json.decode` before `overseer.setup()`.
+4. Explicitly assign the same decoder to `dap.ext.vscode.json_decode` during DAP configuration, so behavior does not depend on Overseer's implicit replacement or plugin loading order.
+5. Remove obsolete JSON/JSON5 plugin stubs and commented decoder experiments. Replace the generic `no launch.js detected.` message with the actual launch-file error.
+6. Verify task discovery and launch decoding with comments, trailing commas, escaped strings, nulls, empty containers, and invalid input on Linux and macOS.
+
+Replacing `overseer.json.decode` adapts an internal plugin module, not a documented setup option. Keep that integration in one place and verify it after Overseer updates. The existing configuration remains in use until this proposal is implemented.
 
 ## Plugin Maintenance and Troubleshooting
 
